@@ -1,0 +1,288 @@
+.form-container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+.imgg{ 
+  width: 80vw;
+  height: 61vh;
+  margin-left:0px;
+  margin-top: 50px;
+  border-radius: 1%;
+}
+
+.hh {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.widt{
+  width: 155px;
+}
+
+.coloum{
+ display: flex;
+  gap: 10px;
+  flex-direction: column;
+      
+}
+.required {
+  color: red;
+  margin-left: 5px;
+}
+
+input:invalid {
+  border: 1px solid red;
+  outline: none;
+}
+
+input[type="text"], input[type="tel"], input[type="date"], .file-upload input {
+  width: 82%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 66px;
+}
+.coloum label {
+  margin-left: 65px;
+}
+.coloum input{
+  width: 71%;
+  margin-left: 0px;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  margin-left: 0px;
+}
+.col input{
+  margin-top: 5px;
+  margin-left: 79px;
+  width: 207px;
+}
+.kit{
+  margin-left: 80px;
+}
+.row {
+  display: flex;
+  gap: 92px;
+  margin-bottom: 10px;
+  margin-left:-14px;
+}
+.roww{
+  display: flex;
+  gap: 38px;
+  width: 656px;
+  margin-bottom: 10px;
+  margin-left: 60px;
+}
+.row label{
+  margin-left: 76px;
+}
+
+.select{
+flex: 1;
+padding: 8px;
+width: 177px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-left: 76px;
+}
+.sel{
+  margin-left: 80px;
+  width: 149px;
+  height: 34px;
+}
+
+.Kitchen-container{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-left: 100px;
+}
+.Kitchen-container label {
+  margin-right: 100px;
+  margin-left: 80px;
+
+}
+.file-upload{
+  width: 70%;
+}
+.file-upload label{
+   margin-left: 80px;
+}
+.file-upload input{
+  width: 100%;
+  margin-left: 80px;
+  margin-top: 15px;
+  padding: 8px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.submitbtn {
+  width: 10%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 70px;
+}
+
+.submitbtn:hover {
+  background-color: darkblue;
+}
+
+@media(max-width:768px){
+  .row {
+      display: flex;
+      gap: 58px;
+      margin-bottom: 10px;
+  }
+}
+
+
+@media (max-width:426px){
+  .row{
+      display: flex;
+      /* width: 420px; */
+      gap: 4px;
+      flex-wrap: wrap;
+      flex-direction: column;
+  }
+  .roww{
+      display: flex;
+      width: 120px;
+      flex-wrap: wrap;
+      gap: inherit;
+      margin-left: 29px;
+      flex-direction: column;
+  }
+  .mobilerow{
+      display: flex;
+  }
+  .coloum label {
+      margin-left: 30px;
+  }
+  .coloum input{
+      width: 70%;
+      margin-left: 30px;
+  }
+  .col{
+      width: 170px;
+      margin-left: 0px;
+      margin-top: 11px;
+  }
+  .col input{
+      margin-top: 5px;
+      margin-left: 76px;
+  }
+  .kit{
+      margin-left: 30px;
+  }
+  .sel{
+      margin-left: 30px;
+     
+      height: 34px;
+  }
+  .Kitchen-container{
+      display: flex;
+      flex-direction: column;
+      margin-left: 6px;
+      margin-top: 10px;
+  }
+  
+  .file-upload{
+      width: 81%;
+    }
+    .file-upload label{
+       margin-left: 30px;
+    }
+    .file-upload input{
+      width: 96%;
+      margin-left: 27px; 
+      height: 19px; 
+    }
+    .submitbtn {
+      width: 40%;
+      border-radius: 22px;
+      height: 34px;
+      font-size: 17px;
+      margin-left: 9px;
+    }
+  
+}
+
+
+@media(max-width:768px){
+  .form-container {
+      width: 80%;
+    }
+    .coloum label {
+      margin-left: 51px;
+  }
+ 
+  .coloum input{
+      margin-top: 5px;
+      margin-left: 51px;
+  }
+  /* .col{
+      width: 170px;
+      margin-left: 29px;
+  } */
+  .row label {
+      margin-left: 53px;
+  }
+  .col input{
+      margin-top: 5px;
+      margin-left: 51px;
+      width: 161px;
+  }
+  .kit{
+      margin-left: 51px;
+  }
+  .sel{
+      margin-left: 51px;
+     
+      height: 34px;
+  }
+  /* .roww{
+      display: flex;
+      gap: 38px;
+      width: 538px;
+      margin-bottom: 10px;
+      margin-left: 60px; 
+  } */
+  .file-upload{
+      width: 81%;
+    }
+    .file-upload label{
+       margin-left: 51px;
+    }
+    .file-upload input{
+      width: 96%;
+      margin-left: 51px; 
+      height: 19px; 
+    }
+    .submitbtn {
+      width: 16%;
+      border-radius: 22px;
+      height: 34px;
+      font-size: 17px;
+      margin-left: 9px;
+    }
+    /* .Kitchen-container label{
+      margin-right: 100px;
+      margin-left: -10px;
+    } */
+}

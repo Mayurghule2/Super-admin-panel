@@ -1,0 +1,58 @@
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap; /* Ensures responsiveness */
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 22%; /* Ensures 4 cards in one row */
+    min-width: 200px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-icon {
+    font-size: 40px; /* Bigger icons */
+  }
+  
+  .card-info h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .card-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 768px) {
+    .cards-container {
+      flex-wrap: wrap;
+    }
+  
+    .card {
+      width: 48%; /* 2 cards per row on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: 100%; /* 1 card per row on mobile */
+    }
+  }
+  

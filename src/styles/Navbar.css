@@ -1,0 +1,139 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    display: none;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-right: 30px;  /* Keeps some space on the right */
+    padding-left: 20px;   /* Creates space before icons */
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Icons */
+.icon {
+    font-size: 22px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Profile Section */
+.profile-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;  /* Moves it slightly left */
+}
+
+.profile-icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0;
+    z-index: 2000;
+}
+
+.dropdown-item {
+    padding: 12px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsive Fix */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .search-bar {
+        flex-grow: 1;
+        max-width: 200px;
+    }
+
+    .navbar-right {
+        padding-right: 15px; /* Adjust padding for small screens */
+        padding-left: 10px;  /* Maintain some space */
+        gap: 10px;
+    }
+
+    /* Adjusting dropdown for mobile */
+    .dropdown-menu {
+        right: -10px;
+        width: 110px;
+    }
+
+    .dropdown-item {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

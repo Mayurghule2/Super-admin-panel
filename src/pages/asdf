@@ -1,0 +1,184 @@
+import React, { useState , useRef } from "react";
+import "../styles/ManagerRegistration.css"; // Import CSS file
+
+const ManagerRegistration = () => {
+  const initialFormState = {
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    name: "",
+    birthDate: "",
+    mobileNumber: "",
+    role: "",
+    gender: "",
+    email: "",
+    address: "",
+    country: "",
+    postalCode: "",
+    bankBranch: "",
+    accountHolder: "",
+    accountNumber:"",
+    ifscNumber: "",
+    profilePicture:"",
+    aadharCard:"",
+    panCard:"",
+    passbookPhoto:"",
+
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+  const profilePicRef = useRef(null);
+  const aadharCardRef = useRef(null);
+  const panCardRef =useRef(null);
+  const passbookPhotoRef = useRef(null);
+   
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({ ...formData, [name]: files[0] });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
+
+    setFormData(initialFormState);
+
+    if (profilePicRef.current) profilePicRef.current.value = "";
+    if (aadharCardRef.current) aadharCardRef.current.value = "";
+    if (panCardRef.current) panCardRef.current.value = "";
+    if (passbookPhotoRef.current) passbookPhotoRef.current.value = "";
+  };
+
+  return (
+    <div className="form-container">
+      
+      <h2>Manager Registration</h2>
+      <form onSubmit={handleSubmit}>
+        {/* <div className="row">
+         <div className="coloum">
+            <label htmlFor="First Name">First Name <span className="required">*</span> </label>
+            <input type="text" name="firstName" placeholder="First name" value={formData.firstName} onChange={handleChange} required />
+         </div>
+         <div className="coloum">
+            <label htmlFor="Middle Name">Middle Name <span className="required">*</span> </label>
+            <input type="text" name="middleName" placeholder="Middle name" value={formData.middleName} onChange={handleChange} required />
+         </div>
+         <div className="coloum">
+            <label htmlFor="Last Name">Last Name <span className="required">*</span> </label>
+            <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
+         </div>     
+        </div> */}
+         <label htmlFor="Name" className="start" >Enter Name <span className="required">*</span></label>
+        <div className="wideinput">
+        <input type="text" name="name" placeholder="Name" className="top" value={formData.name} onChange={handleChange}  required/>
+        </div>
+        <label htmlFor="Email"  className="start"  >Email <span className="required">*</span></label>
+        <div className="wideinput">
+        <input type="email" name="email" placeholder="Email Address" className="top" value={formData.email} onChange={handleChange} required />
+        </div>
+
+        <div className="row">
+          <div className="coloum">
+            <label htmlFor="Date Of Birth">Date Of Birth</label>
+            <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+          </div>    
+          <div className="coloumm" >
+            <label htmlFor="Mobile Number" >Mobile Number <span className="required">*</span></label>
+            <input type="tel" name="mobileNumber"  placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleChange} required />
+          </div>    
+          <div className="coloum">
+            <label htmlFor="role">Role <span className="required">*</span></label>
+            <select name="role" value={formData.role} onChange={handleChange}>
+            <option value="">Select Role</option>
+            <option value="Manager">Manager</option>
+          </select>
+          </div> 
+        </div>
+          
+        <div>
+        <label htmlFor="Gender" className="start"  >Gender</label>
+        <div className="gender-container">
+          <div className="done" >
+          <label><input type="radio" name="gender" value="Male" checked={formData.gender === "Male"} onChange={handleChange} /> Male</label>
+          <label><input type="radio" name="gender" value="Female" checked={formData.gender === "Female"} onChange={handleChange} /> Female</label>
+          <label><input type="radio" name="gender" value="Other" checked={formData.gender === "Other"} onChange={handleChange} /> Other</label>
+          </div>
+        </div>
+        </div>
+       
+        <label htmlFor="Address" className="start" >Address</label>
+        <div className="wideinput">
+        <input type="text" name="address" placeholder="Address" className="top" value={formData.address} onChange={handleChange} />
+        </div>
+       
+    
+
+        <div className="row">
+        <div className="coloum">
+            <label htmlFor="Select Country">Select Country</label>
+            <div className="wide">
+            <select name="country" value={formData.country} onChange={handleChange}>
+            <option value="">Select Country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+          </select>
+          </div>
+        </div>   
+        <div className="col">
+            <label htmlFor="postal code">Postal Code <span className="required">*</span></label>
+            <input type="text" name="postalCode" placeholder="Postal Code" value={formData.postalCode} onChange={handleChange}  required/>
+        </div> 
+          
+        </div>
+       
+        {/* <label htmlFor="Bank Branch Name" className="start" >Bank Branch Name</label>
+        <div className="wideinput">
+        <input type="text" name="bankBranch" placeholder="Bank Branch Name" className="top" value={formData.bankBranch} onChange={handleChange}  required/>
+        </div>
+        <label htmlFor="Account Holder Name"  className="start" >Account Holder Name <span className="required">*</span></label>
+        <div className="wideinput">
+        <input type="text" name="accountHolder" placeholder="Account Holder Name" className="top" value={formData.accountHolder} onChange={handleChange} required />
+        </div>    */}
+        <label htmlFor="Account Number" className="start" >Account Number <span className="required">*</span></label>
+        <div className="wideinput">
+       <input type="text" name="accountNumber" placeholder="Account Number" className="top"  value={formData.accountNumber} onChange={handleChange}  required/>
+        </div>
+        
+        <label htmlFor="IFSC Number" className="start"  >IFSC Number <span className="required">*</span></label>
+        <div className="wideinput">
+        <input type="text" name="ifscNumber" placeholder="IFSC Number" className="top"  value={formData.ifscNumber} onChange={handleChange} required/>
+        </div>
+        
+        <div className="file-upload">
+          <label>Upload Profile Picture <span className="required">*</span></label>
+          <input type="file" name="profilePicture" ref={profilePicRef}  onChange={handleFileChange} required/>
+        </div>
+
+        <div className="file-upload">
+          <label>Upload Aadhar Card <span className="required">*</span></label>
+          <input type="file" name="aadharCard" ref={aadharCardRef} onChange={handleFileChange} required />
+        </div>
+ 
+        <div className="file-upload">
+          <label>Upload Pan Card <span className="required">*</span></label>
+          <input type="file" name="panCard"  placeholder="Choose file Or drop here" ref={panCardRef} onChange={handleFileChange}  required/>
+        </div>
+
+        <div className="file-upload">
+          <label>Upload Passbook Photo</label>
+          <input type="file" name="passbookPhoto" ref={passbookPhotoRef} onChange={handleFileChange} />
+        </div>
+
+        <button type="submit" className="submitbtn">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default ManagerRegistration;

@@ -1,0 +1,82 @@
+/* Widget Container */
+.widget-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px; /* Reduced padding */
+    flex-wrap: nowrap; /* Keep in a single row */
+}
+
+/* Individual Widget */
+.dashboard-widget {
+    background: #fff;
+    border-radius: 4px;
+    padding: 4px; /* Reduced padding */
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    flex: 0 1 10%; /* Allows 5 widgets per row */
+    min-width: 100px; /* Slightly smaller */
+    max-width: 150px; /* Ensures compact fit */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Widget Hover Effect */
+.dashboard-widget:hover {
+    transform: scale(1.02);
+}
+
+/* Widget Icon */
+.widget-icon {
+    font-size: 15px; /* Reduced size */
+    background: rgba(255, 145, 77, 0.2);
+    padding: 4px; /* Smaller padding */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px; /* Smaller icon size */
+    min-height: 30px;
+    color: #FF5722;
+}
+
+/* Widget Info */
+.widget-info h2 {
+    margin: 0;
+    font-size: 12px; /* Smaller font */
+    font-weight: bold;
+}
+
+.widget-info p {
+    margin: 0;
+    color: #666;
+    font-size: 9px; /* Reduced font size */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-widget {
+        flex: 0 1 22%; /* Allows 4 widgets per row */
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .widget-container {
+        flex-wrap: wrap; /* Switch to wrapping */
+        overflow-x: initial; /* Disable scrolling */
+        justify-content: center;
+    }
+
+    .dashboard-widget {
+        flex: 0 1 45%; /* 2 widgets per row */
+        min-width: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-widget {
+        flex: 0 1 100%; /* 1 widget per row */
+        min-width: 100%;
+    }
+}

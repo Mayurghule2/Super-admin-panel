@@ -1,0 +1,236 @@
+/* 🌟 Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff00;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden; /* Prevents horizontal scrolling */
+}
+
+/* 📌 Content Area */
+.dashboard-content {
+    flex-grow: 1;
+    padding: 15px; /* Reduced from 20px */
+    width: calc(100vw - 15%);
+    height: 100vh;
+    overflow-y: auto; /* Enables vertical scrolling */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🛠 If Sidebar is Collapsed */
+.sidebar.closed + .dashboard-content {
+    width: calc(100vw - 5%);
+    margin-left: 2%;
+}
+
+/* Widget Container */
+.widget-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    margin-left: 30px;
+    padding: 4px 8px;
+    width: 90%;
+    flex-wrap: wrap; /* Ensures widgets wrap on smaller screens */
+    gap: 16px; /* Spacing between widgets */
+    overflow-x: auto;
+}
+
+/* Dashboard Widget */
+.dashboard-widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    flex-basis: calc(25% - 16px); /* Ensures 4 widgets per row */
+    min-width: 200px;
+    max-width: 250px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 1024px) { 
+    .dashboard-widget {
+        flex-basis: calc(33.33% - 15px); /* Adjusted */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-widget {
+        flex-basis: calc(50% - 15px); /* Adjusted */
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-widget {
+        flex-basis: 100%;
+    }
+}
+
+/* 🔥 Widget Hover Effect */
+.dashboard-widget:hover {
+    transform: scale(1.03); /* Reduced from 1.05 for subtler effect */
+}
+
+/* 🥧 Pie Charts in One Row */
+.charts-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Reduced from 15px */
+    margin-bottom: 5px; /* Reduced from 10px */
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 3px; /* Reduced from 5px */
+}
+
+/* 🛠 Individual Pie Chart */
+.chart {
+    flex: 1;
+    min-width: 250px; /* Reduced from 300px */
+    max-width: 28%; /* Slightly reduced from 30% */
+    text-align: center;
+}
+
+/* 📊 Order Trends & Revenue (Wider & Less Gap) */
+.trends-container {
+    display: flex;
+    justify-content: center; /* Centers trends like chart-container */
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping for responsiveness */
+    gap: 10px; /* Matches chart layout */
+    width: 100%;
+    padding: 8px; /* Ensures proper spacing */
+}
+
+
+/* 🛠 Order Trends & Revenue: Wider */
+.trend-chart {
+    flex: 1;
+    min-width: 400px; /* Reduced from 450px */
+    max-width: 48%; /* Reduced from 50% */
+}
+
+/* 🎯 Reduced Space Between LineChartComponent & Total Revenue Chart */
+.line-chart-container {
+    margin-bottom: 8px; /* Reduced from 10px */
+}
+
+.revenue-chart-container {
+    margin-top: 8px; /* Reduced from 10px */
+}
+
+/* 🛠 Make Dashboard Content Scrollable */
+.dashboard-content::-webkit-scrollbar {
+    width: 6px; /* Reduced from 8px */
+}
+
+.dashboard-content::-webkit-scrollbar-thumb {
+    background: #8b3030;
+    border-radius: 8px; /* Slightly smaller */
+}
+
+.dashboard-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 1024px) {
+    .dashboard-content {
+        width: calc(100vw - 16%);
+        margin-left: 16%;
+    }
+
+    .sidebar.closed + .dashboard-content {
+        width: calc(100vw - 5%);
+        margin-left: 5%;
+    }
+
+    .charts-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .chart {
+        max-width: 45%; /* Reduced from 48% */
+    }
+
+    .trends-container {
+        flex-wrap: wrap;
+        gap: 4px; /* Reduced from 5px */
+    }
+
+    .trend-chart {
+        min-width: 350px; /* Reduced from 400px */
+        max-width: 46%; /* Reduced from 48% */
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .dashboard-content {
+        width: 100%;
+        margin-left: 0;
+        padding: 8px; /* Reduced from 10px */
+    }
+
+    .widget-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .chart {
+        min-width: 240px; /* Reduced from 280px */
+        max-width: 75%; /* Reduced from 80% */
+    }
+
+    .trends-container {
+        flex-wrap: wrap;
+        gap: 4px; /* Reduced from 5px */
+    }
+
+    .trend-chart {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .widget-container {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .chart {
+        max-width: 100%;
+    }
+
+    .trends-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 4px; /* Reduced from 5px */
+    }
+
+    .trend-chart {
+        max-width: 100%;
+    }
+}

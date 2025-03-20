@@ -1,0 +1,148 @@
+/* Center the profile container */
+.manager-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: transparent;
+    padding: 20px;
+}
+
+/* Profile card - centered */
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile photo styling */
+.profile-photo {
+    position: relative;
+}
+
+.profile-photo img,
+.default-profile-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    color: rgb(59, 52, 52); /* Black profile icon */
+}
+
+.profile-photo input {
+    margin-top: 10px;
+}
+
+/* Profile field styles */
+.profile-details label {
+    font-weight: bold;
+    color: #444; /* Light black for labels */
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.profile-details input,
+.profile-details textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+.profile-details input:focus,
+.profile-details textarea:focus {
+    border-color: #FF6700;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 103, 0, 0.6);
+}
+
+/* Password field with eye icon */
+.password-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-container input {
+    flex: 1;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #FF6700;
+}
+
+/* Buttons */
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #FF6700;
+}
+
+.edit-btn:hover {
+    background-color: #cc5200;
+}
+
+.save-btn {
+    background-color: #FF6700;
+}
+
+.save-btn:hover {
+    background-color: #cc5200;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .profile-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .profile-details input,
+    .profile-details textarea {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,113 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.profilecard {
+  background: white;
+  width: 600px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+}
+.roww{
+  display: flex;
+  width: 17px;
+  margin-left: 20px;
+}
+
+.col{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 37px;
+  padding-left: 15px;
+}
+.profilecard {
+  background: white;
+  width: 600px;
+  padding: 20px;
+  padding-top: 40px;  /* Push content down so button stays at the top */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+  z-index: 1000; /* Ensures it's on top */
+  padding: 10px;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+
+
+.profileimg img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+  margin-right: 18px;
+}
+.profileimg{
+ display: flex;
+ justify-content: center;
+ 
+}
+.profiledetails label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.profiledetails input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f9f9f9;
+  outline: none;
+}
+
+
+.updatebtn {
+  background: #ff0000;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 15%;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.updatebtn:hover {
+  background: #b52222;
+}

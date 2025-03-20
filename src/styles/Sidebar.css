@@ -1,0 +1,162 @@
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: rgb(228, 227, 227); /* Warm orange theme */
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.3s ease-in-out;
+    color: rgb(6, 6, 6);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-x: hidden; /* Prevent content overflow */
+}
+
+.sidebar.closed {
+    width: 80px;
+}
+
+.toggle-btn {
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 20px;
+    background: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    outline: none; /* Remove default outline */
+}
+
+.toggle-btn:focus {
+    outline: 2px solid #D94A1E; /* Improve focus visibility */
+}
+
+.hidden {
+    display: none;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: rgb(6, 6, 6);
+}
+
+.sidebar ul li.active {
+    background: #D94A1E; /* Darker orange for active state */
+    color: rgb(255, 255, 255);
+    position: relative;
+    font-weight: bold;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.sidebar ul li:hover {
+    background: #E55B2C; /* Slightly lighter hover effect */
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+        padding: 0;
+        transition: width 0.4s ease-in-out, padding 0.2s ease-in-out;
+    }
+    
+    .sidebar.open {
+        width: 200px;
+        padding: 20px;
+        overflow: visible;
+    }
+    
+    .toggle-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 24px;
+        background: #D94A1E;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .toggle-btn:hover {
+        background: #E55B2C;
+    }
+    
+    .sidebar ul li {
+        justify-content: center;
+    }    
+}
+
+/* Registration Dropdown Header */
+.registration-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    background: rgb(228, 227, 227);
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+    color: rgb(6, 6, 6);
+}
+
+.registration-dropdown:hover {
+    background: #E55B2C; /* Slightly lighter hover effect */
+    color: white;
+}
+
+/* Dropdown Menu */
+.registration-dropdown-menu {
+    background: rgb(228, 227, 227);
+    border-left: 3px solid #D94A1E;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 5px 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
+/* Show dropdown when active */
+.registration-dropdown-menu.open {
+    max-height: 200px; /* Adjust height based on content */
+}
+
+/* Dropdown Items */
+.registration-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    color: rgb(6, 6, 6);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.registration-dropdown-item:hover {
+    background: #E55B2C;
+    color: white;
+}
+
+/* Active Dropdown Item */
+.registration-dropdown-item.active {
+    background: #D94A1E;
+    color: white;
+}

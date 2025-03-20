@@ -1,0 +1,52 @@
+.chart-container {
+    width: 100%;
+    padding: 8px; /* Adds some padding */
+}
+
+.chart-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping if needed */
+    gap: 12px; /* Adds spacing between charts */
+}
+
+/* Chart Box */
+.chart-box {
+    flex: 1 1 30%; /* Ensures 3 charts per row */
+    min-width: 280px; /* Slightly smaller for better fit */
+    max-width: 350px; /* Prevents charts from becoming too large */
+    background: #fff;
+    padding: 16px; /* Reduced for better spacing */
+    border-radius: 8px; /* Slightly reduced for a cleaner look */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+/* Chart Title */
+.chart-title {
+    font-size: 16px; /* Slightly smaller font */
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .chart-box {
+        flex: 1 1 45%; /* 2 charts per row on smaller laptops */
+        min-width: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chart-row {
+        flex-direction: column; /* Stack charts vertically */
+        align-items: center;
+    }
+
+    .chart-box {
+        flex: 1 1 100%; /* 1 chart per row */
+        min-width: 280px;
+    }
+}
