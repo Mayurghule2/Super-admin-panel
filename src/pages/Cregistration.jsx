@@ -6,6 +6,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { FaAddressCard } from "react-icons/fa";
 import { GiWorld } from "react-icons/gi";
 import { TbMapPinCode } from "react-icons/tb";
+import { IoDocumentText } from "react-icons/io5";
 
 const CloudRegistration = () => {
    const initialFormState = {
@@ -272,7 +273,7 @@ const CloudRegistration = () => {
        
         <div className="space-y-4">
           <div className="space-y-2">
-            <label className="font-semibold text-gray-600">Upload FSSAI License <span className="text-red-500">*</span></label>
+            <label className="font-semibold text-gray-600 flex items-center gap-2">  <IoDocumentText  className="text-orange-500"/>  Upload FSSAI License <span className="text-red-500">*</span></label>
             <input
               type="file"
               name="fssaiDoc"
@@ -284,7 +285,7 @@ const CloudRegistration = () => {
           </div>
           
           <div className="space-y-2">
-            <label className="font-semibold text-gray-600">Upload Other Documents</label>
+            <label className="font-semibold text-gray-600 flex items-center gap-2"><IoDocumentText   className="text-orange-500" />Upload Other Documents</label>
             <input
               type="file"
               name="otherDo"
