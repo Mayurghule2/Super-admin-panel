@@ -29,7 +29,7 @@ function App() {
                     <Navbar />
                     <main className="flex-1 p-4 overflow-auto">
                         <Routes>
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/" element={<Dashboard />} />
                             <Route path="/registration/add-kitchen" element={<Cregistration />} />
                             <Route path="/registration/add-manager" element={<ManagerRegistration />} />
                             <Route path="/admin-details" element={<AdminDetails />} />

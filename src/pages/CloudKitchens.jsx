@@ -37,9 +37,9 @@ const CloudKitchens = () => {
       {/* Filters */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
         {/* State Filter */}
-        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2">
+        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus-within:border-orange-500 focus-within:shadow-md">
           <select
-            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6"
+            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
           >
@@ -51,9 +51,9 @@ const CloudKitchens = () => {
         </div>
 
         {/* City Filter */}
-        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2">
+        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus-within:border-orange-500 focus-within:shadow-md">
           <select
-            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6"
+            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
           >
@@ -68,9 +68,9 @@ const CloudKitchens = () => {
         </div>
 
         {/* Rating Filter */}
-        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2">
+        <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus-within:border-orange-500 focus-within:shadow-md">
           <select
-            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6"
+            className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedRating}
             onChange={(e) => setSelectedRating(e.target.value)}
           >

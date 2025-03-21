@@ -31,7 +31,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar">
+        <div className="navbar ">
             <div className="navbar-left">
                 {/* <FaBars className="menu-icon" /> */}
             </div>
@@ -41,7 +41,7 @@ const Navbar = () => {
                     <input type="text" placeholder="Search here" />
                 </div>
             </div> */}
-            <div className="navbar-right">
+            <div className="navbar-right ">
                 <Link to="/messages" className="icon">
                     <FaEnvelope />
                 </Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
-        </nav>
+        </div>
     );
 };
 
