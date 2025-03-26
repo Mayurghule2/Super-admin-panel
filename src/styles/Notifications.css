@@ -1,0 +1,104 @@
+/* Notifications Page */
+.notifications-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+/* Header Section */
+.notifications-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+/* Title */
+.notifications-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+/* Subtitle */
+.notifications-subtitle {
+    font-size: 16px;
+    color: gray;
+    margin-top: 5px;
+}
+
+/* Notification List */
+.notification-list {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Notification Card */
+.notification-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+}
+
+/* Unread Notification */
+.notification-card.unread {
+    border-left: 5px solid red;
+    font-weight: bold;
+    background: #fff6f6;
+}
+
+/* Read Notification */
+.notification-card.read {
+    border-left: 5px solid green;
+}
+
+/* Hover Effect */
+.notification-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background: #fffbf2;
+}
+
+/* Click Effect */
+.notification-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* No Notifications Message */
+.no-notifications {
+    text-align: center;
+    color: gray;
+    font-size: 18px;
+}
+
+/* Animation for Real-time Updates */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-card {
+    animation: fadeIn 0.4s ease-in-out;
+}

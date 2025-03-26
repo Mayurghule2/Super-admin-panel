@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBell, FaEnvelope, FaUserCircle, FaBars } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const navigate = useNavigate(); 
     // Toggle dropdown visibility
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
@@ -26,8 +26,10 @@ const Navbar = () => {
     }, []);
 
     // Function to close dropdown when clicking on Profile or Logout
-    const closeDropdown = () => {
-        setDropdownOpen(false);
+    const handleLogout = () => {
+        localStorage.removeItem("authToken"); // Clear auth token (if any)
+        setDropdownOpen(false); // Close the dropdown
+        navigate("/sign-in"); // Redirect to sign-in page
     };
 
     return (
@@ -49,12 +51,12 @@ const Navbar = () => {
                     <FaBell />
                 </Link>
                 <div className="profile-container">
-                    <FaUserCircle className="profile-icon" onClick={toggleDropdown} />
+                <FaUserCircle className="profile-icon" onClick={toggleDropdown} />
                     {dropdownOpen && (
-                        <div className="dropdown-menu">
-                            <Link to="/profile" className="dropdown-item" onClick={closeDropdown}>Profile</Link>
-                            <Link to="/logout" className="dropdown-item" onClick={closeDropdown}>Logout</Link>
-                        </div>
+                         <div className="dropdown-menu">
+                         <Link to="/profile" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Profile</Link>
+                         <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                     </div>
                     )}
                 </div>
             </div>
