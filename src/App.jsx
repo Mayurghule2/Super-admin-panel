@@ -7,9 +7,13 @@ import ManagerDetails from "./pages/ManagerDetails"
 import CloudKitchens from "./pages/CloudKitchens";
 import KitchenDetails from "./pages/KitchenDetails";
 import Menus from './pages/Menus';
+
+import StateCuisines from "./pages/StateCuisines"; 
+
 import Notifications from './pages/Notifications';
 import SignIn from './pages/SignIn';  // Import the SignIn page
 import './styles/global.css';
+
 import Messages from './pages/Messages';
 
 import Profile from './pages/Profile';
@@ -27,6 +31,30 @@ function Layout() {
     const isSignInPage = location.pathname === "/sign-in";
 
     return (
+
+        <Router>
+            <div className="flex h-screen">
+                <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+                <div className="flex-1 flex flex-col">
+                    <Navbar />
+                    <main className="flex-1 p-4 overflow-auto">
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/registration/add-kitchen" element={<Cregistration />} />
+                            <Route path="/registration/add-manager" element={<ManagerRegistration />} />
+                            <Route path="/admin-details" element={<AdminDetails />} />
+                            <Route path="/manager-details/:name" element={<ManagerDetails />} />
+                            <Route path="/cloud-kitchens" element={<CloudKitchens />} />
+                            <Route path="/cloud-kitchens/:id" element={<KitchenDetails />} />
+                            <Route path="/menus" element={<Menus />} />
+                            <Route path="/state/:stateName" element={<StateCuisines />} />
+                            <Route path="/messages" element={<Messages />} />
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/update-manager/:id" element={<UpdateManagerDetails />} />
+                        </Routes>
+                    </main>
+                </div>
+
         <div className="flex h-screen">
             {!isSignInPage && <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />}
             <div className="flex-1 flex flex-col">
@@ -48,6 +76,7 @@ function Layout() {
                         <Route path="/update-manager/:id" element={<UpdateManagerDetails />} />
                     </Routes>
                 </main>
+
             </div>
         </div>
     );
