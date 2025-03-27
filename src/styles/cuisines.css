@@ -1,0 +1,221 @@
+/* General Styling */
+.cuisines {
+    text-align: center;
+    padding: 2.5rem;
+    margin-top: 13rem;
+}
+
+.cuisines h2 {
+    font-size: 1.875rem; /* 30px */
+    font-weight: 600;
+    color: #ff5733;
+    margin-bottom: 1.5rem;
+}
+
+.imgg {
+    position: relative;
+    width: 100%;
+    height: 77vh;
+    margin-top: -2.625rem;
+    z-index: 1;
+}
+
+.add {
+    position: relative;
+    text-align: center;
+    font-size: 2rem;
+    z-index: 2;
+    color: wheat;
+    font-weight: 600;
+    margin-top: -20rem;
+}
+
+.addd {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    font-size: 1.2rem;
+    z-index: 2;
+    margin-top: 0.625rem;
+    color: rgb(241, 241, 241);
+    font-weight: 400;
+}
+
+/* Scrollable Section */
+.scroll-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+    background-color: #ff5733;
+    border: none;
+    padding: 0.75rem 1.125rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: white;
+    transition: background 0.3s, transform 0.2s;
+    z-index: 10;
+    position: absolute;
+}
+
+.scroll-btn:hover {
+    background-color: #e04c2d;
+    transform: scale(1.1);
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+/* State Grid */
+.state-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0.625rem;
+    width: 85%;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+}
+
+.state-grid::-webkit-scrollbar {
+    display: none;
+}
+
+/* State Card */
+.state-card {
+    flex: 0 0 12.5rem; /* 200px */
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    cursor: pointer;
+    background: white;
+}
+
+.state-card:hover {
+    transform: scale(1.05);
+}
+
+/* State Image */
+.state-img {
+    width: 100%;
+    height: 7.5rem; /* 120px */
+    object-fit: cover;
+    border-bottom: 3px solid #ff6700;
+}
+
+/* State Name */
+.state-name {
+    font-size: 1.125rem; /* 18px */
+    font-weight: bold;
+    color: #0e0600;
+    padding: 0.625rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .scroll-container {
+        width: 95%;
+    }
+
+    .state-grid {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-container {
+        width: 100%;
+        padding: 0 1.25rem;
+    }
+
+    .state-grid {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        padding-bottom: 0.625rem;
+        width: 75%;
+    }
+
+    .state-card {
+        flex: 0 0 11.25rem; /* 180px */
+    }
+
+    .scroll-btn {
+        padding: 0.625rem;
+        font-size: 1.125rem;
+    }
+
+    .left {
+        left: 0.3125rem;
+    }
+
+    .right {
+        right: 0.3125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-container {
+        width: 493%;
+        margin-left: -56px;
+    }
+   .cuisines h2{
+    width: 253px;
+    display: flex;
+    margin-left: -48px;
+    flex-wrap: wrap;
+    font-size: 1.125rem;
+    margin-top: -150px;
+}
+.imgg {
+    width: 111%;
+    height: 26vh;
+}
+.add{
+    margin-top: -107px;
+    font-size: 23px;
+    color: wheat;
+}
+.addd{
+    display: none;
+
+}
+.cuisines {
+    width: 133px;
+}
+
+    .state-grid {
+        width: 70%;
+    }
+
+    .state-card {
+        flex: 0 0 9.375rem; /* 150px */
+    }
+
+    .scroll-btn {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+}
