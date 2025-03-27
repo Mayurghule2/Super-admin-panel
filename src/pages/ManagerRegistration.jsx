@@ -108,22 +108,22 @@ const ManagerRegistration = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 ">
-          <div>
-
-            <label className="block font-semibold text-gray-700 mr-2">
+          <div className="">
+            <label
+              className="block font-semibold text-gray-700 mr-2">
               <span className="text-red-500">*</span>
-              Date Of Birth :
+              Address :
             </label>
-            <DatePicker
-              selected={formData.birthDate}
-              onChange={handleDateChange}
-              dateFormat="dd-MM-yyyy"
-              placeholderText="Select Date"
+            <input
+              type="text"
+              placeholder="Enter Address..."
+              name="address"
               className="w-72 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-              maxDate={new Date()}
-              required
-            />
+              value={formData.address}
+              onChange={handleChange}
+              maxLength={100} required />
           </div>
+
 
           <div className="">
             <label
@@ -143,22 +143,23 @@ const ManagerRegistration = () => {
         </div>
 
         <div className="grid grid-cols-2">
-          <div className="">
-            <label
-              className="block font-semibold text-gray-700 mr-2">
-              <span className="text-red-500">*</span>
-              Role :
-            </label>
-            <select
-              name="role"
-              className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-              value={formData.role}
-              onChange={handleChange} required>
-              <option value="">Select Role</option>
-              <option value="Manager">Manager</option>
-            </select>
-          </div>
 
+          <div>
+
+            <label className="block font-semibold text-gray-700 mr-2">
+              <span className="text-red-500">*</span>
+              Date Of Birth :
+            </label>
+            <DatePicker
+              selected={formData.birthDate}
+              onChange={handleDateChange}
+              dateFormat="dd-MM-yyyy"
+              placeholderText="Select Date"
+              className="w-72 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
+              maxDate={new Date()}
+              required
+            />
+          </div>
 
           <div className=" ">
             <label className="block font-semibold text-gray-700 mr-2 mb-1">
@@ -189,17 +190,18 @@ const ManagerRegistration = () => {
           <label
             className="block font-semibold text-gray-700 mr-2">
             <span className="text-red-500">*</span>
-            Address :
+            Role :
           </label>
-          <input
-            type="text"
-            placeholder="Enter Address..."
-            name="address"
-            className="w-72 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-            value={formData.address}
-            onChange={handleChange}
-            maxLength={100} required />
+          <select
+            name="role"
+            className="w-2/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
+            value={formData.role}
+            onChange={handleChange} required>
+            <option value="">Select Role</option>
+            <option value="Manager">Manager</option>
+          </select>
         </div>
+
         <div className="grid grid-cols-2">
           <div className=" ">
             <label className="block font-semibold text-gray-700 mr-2">

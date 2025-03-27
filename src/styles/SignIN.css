@@ -1,0 +1,83 @@
+/* Fullscreen Centering */
+.signin-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+
+/* Modern Card Style Form */
+.signin-container form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Form Hover Effect */
+.signin-container form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Title Styling */
+.signin-container h2 {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Input Fields */
+.signin-container input {
+    margin: 10px 0;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Placeholder */
+.signin-container input::placeholder {
+    color: #999;
+}
+
+/* Input Focus Effect */
+.signin-container input:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+}
+
+/* Button Styling */
+.signin-container button {
+    background: #ff6600;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.signin-container button:hover {
+    background: #e65c00;
+    box-shadow: 0 5px 10px rgba(255, 102, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Button Click Effect */
+.signin-container button:active {
+    transform: scale(0.98);
+}
