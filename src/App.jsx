@@ -7,7 +7,7 @@ import ManagerDetails from "./pages/ManagerDetails"
 import CloudKitchens from "./pages/CloudKitchens";
 import KitchenDetails from "./pages/KitchenDetails";
 import Menus from './pages/Menus';
-
+import StateCuisines from "./pages/StateCuisines"; 
 import Messages from './pages/Messages';
 
 import Profile from './pages/Profile';
@@ -37,10 +37,8 @@ function App() {
                             <Route path="/cloud-kitchens" element={<CloudKitchens />} />
                             <Route path="/cloud-kitchens/:id" element={<KitchenDetails />} />
                             <Route path="/menus" element={<Menus />} />
-
+                            <Route path="/state/:stateName" element={<StateCuisines />} />
                             <Route path="/messages" element={<Messages />} />
-                            
-
                             <Route path="/profile" element={<Profile />} />
                             <Route path="/update-manager/:id" element={<UpdateManagerDetails />} />
                         </Routes>
