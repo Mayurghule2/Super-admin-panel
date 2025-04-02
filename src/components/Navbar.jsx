@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import { FaSearch, FaBell, FaEnvelope, FaUserCircle, FaBars } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
@@ -47,11 +48,11 @@ const Navbar = () => {
                 <Link to="/messages" className="icon">
                     <FaEnvelope />
                 </Link>
-                <Link to="/notifications" className="icon">
+                <Link to="/Notifications" className="icon">
                     <FaBell />
                 </Link>
                 <div className="profile-container">
-                <FaUserCircle className="profile-icon" onClick={toggleDropdown} />
+                    <FaUserCircle className="profile-icon" onClick={toggleDropdown} />
                     {dropdownOpen && (
                          <div className="dropdown-menu">
                          <Link to="/profile" className="dropdown-item" onClick={() => setDropdownOpen(false)}>Profile</Link>

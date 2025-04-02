@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import kitchens from "../data/kitchensData"; // Import kitchens data
+// import kitchens from "../data/kitchensData"; // Import kitchens data
 import PopularDish from "../components/PopularDish";
 import { IoLocation } from "react-icons/io5";
 import { FcManager } from "react-icons/fc";
@@ -8,39 +8,50 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import Review from "../components/Review";
 import {Link} from "react-router-dom"
 import { IoArrowBackOutline } from "react-icons/io5";
-
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 const KitchenDetails = () => {
-  const { id } = useParams();
-  const kitchen = kitchens.find((k) => k.id === parseInt(id));
+  const [kitchensData, setKitchens] = useState([]); // State to store kitchens data
+  // Fetch Cloud Kitchens from API
+ useEffect(() => {
+  axios
+    .get("http://localhost:9090/api/cloud-kitchens/all") // Call your API
+    .then((response) => {
+      setKitchens(response.data); // Store kitchens in state
+      console.log(response.data)
+    })
+    .catch((error) => console.error("Error fetching kitchens:", error));
+}, []);
 
-  if (!kitchen) {
+  const { id } = useParams();  // Get the kitchenId from the URL
+  const kitchens = kitchensData.find(k => k.kitchenId === parseInt(id));
+  if (!kitchens) {
     return <p className="text-gray-500">Kitchen not found.</p>;
   }
 
   return (
     <div className="">
       <div>
-      <Link to="/cloud-kitchens" className="text-3xl px-4 py-2 text-black">
+      <Link to={`/cloud-kitchens/`} state={{ kitchens }} className="text-3xl px-4 py-2 text-black">
         <IoArrowBackOutline />
       </Link>
       </div>
       <div className="p-4 max-w-4xl mx-auto flex flex-col md:flex-row gap-20 ">
         <div>
 
-          <img src={kitchen.image} alt={kitchen.name} className="w-80 h-64 object-cover rounded-md shadow-lg" />
+          <img src={kitchens.image} alt="Cloud Kitchen Image" className="w-80 h-64 object-cover rounded-md shadow-lg" />
         </div>
         <div className="">
 
-          <h1 className="text-3xl font-bold mb-5 mt-5">{kitchen.name}</h1>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Manager ID: {kitchen.managerId}</p>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Cloud Kitchen ID: {kitchen.cloudKitchenId} </p>
+          <h1 className="text-3xl font-bold mb-5 mt-5">{kitchens.kitchenName}</h1>
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Manager ID: {kitchens.managerId}</p>
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Cloud kitchens ID: {kitchens.cloudKitchenId} </p>
           <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">
             <IoLocation />
-            Address: {kitchen.address}, {kitchen.city}, {kitchen.state}</p>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"> <FcManager /> Administrated by {kitchen.managerName}</p>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"><FaRegThumbsUp /> Rating: ⭐ {kitchen.rating}</p>
-          <p className="text-gray-600 text-lg flex items-center gap-2"> <FaCalendarAlt /> Operating Time: {kitchen.timing}</p>
+            Address: {kitchens.address}, {kitchens.city}, {kitchens.state}</p>
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"> <FcManager /> Administrated by {kitchens.managerName}</p>
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"><FaRegThumbsUp /> Rating: ⭐ {kitchens.rating}</p>
+          <p className="text-gray-600 text-lg flex items-center gap-2"> <FaCalendarAlt /> Operating Time: {kitchens.operatingTime}</p>
         </div>
       </div>
 

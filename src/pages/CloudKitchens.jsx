@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import CloudKitchenCard from "../components/CloudKitchenCard";
 import { FaSearch } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import kitchens from "../data/kitchensData";
 import { FaChevronDown } from "react-icons/fa";
+import axios from "axios";
 
+import { Router, Routes, Route } from "react-router-dom";
 const CloudKitchens = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
+const [kitchens, setKitchens] = useState([]);
+  // Fetch Cloud Kitchens from API
+ useEffect(() => {
+  axios
+    .get("http://localhost:9090/api/cloud-kitchens/all") // Call your API
+    .then((response) => {
+      setKitchens(response.data); // Store kitchens in state
+      console.log(response.data)
+    })
+    .catch((error) => console.error("Error fetching kitchens:", error));
+}, []);
 
   // Filtering logic
   const filteredKitchens = kitchens.filter((kitchen) => {
@@ -30,6 +43,8 @@ const CloudKitchens = () => {
   };
 
   return (
+   
+      
     <div className="px-4 md:px-6 lg:px-8 max-w-5xl mt-16">
       <h1 className="text-xl md:text-3xl font-bold text-center my-4 mb-5">Cloud Kitchens Details</h1>
 
@@ -121,6 +136,7 @@ const CloudKitchens = () => {
         )}
       </div>
     </div>
+    
   );
 };
 

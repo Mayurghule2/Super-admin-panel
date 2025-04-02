@@ -1,17 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 const ManagerRegistration = () => {
+  
   const initialFormState = {
-    firstName: "",
-    middleName: "",
-    lastName: "",
     name: "",
     birthDate: "",
-    mobileNumber: "",
+    phone: "",
     role: "",
     gender: "",
     email: "",
@@ -20,12 +24,13 @@ const ManagerRegistration = () => {
     postalCode: "",
     bankBranch: "",
     accountHolder: "",
-    accountNumber: "",
-    ifscNumber: "",
+    bankAccountNumber: "",
+    ifscCode: "",
     profilePicture: "",
     aadharCard: "",
     panCard: "",
     passbookPhoto: "",
+    cloudKitchenId:"",
   };
 
   const [formData, setFormData] = useState(initialFormState);
@@ -33,18 +38,37 @@ const ManagerRegistration = () => {
   const aadharCardRef = useRef(null);
   const panCardRef = useRef(null);
   const passbookPhotoRef = useRef(null);
+  const [kitchens, setKitchens] = useState([]);
 
+ // Fetch Cloud Kitchens from API
+ useEffect(() => {
+  axios
+    .get("http://localhost:9090/api/cloud-kitchens/all") // Call your API
+    .then((response) => {
+      setKitchens(response.data); // Store kitchens in state
+      console.log(response.data)
+    })
+    .catch((error) => console.error("Error fetching kitchens:", error));
+}, []);
   // this function use to change form data 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: value, // Update the value for cloudKitchenId
+    });
   };
+  
 
   // function usedd to change the selected file or add new file
   const handleFileChange = (e) => {
     const { name, files } = e.target;
-    setFormData({ ...formData, [name]: files[0] });
+    if (files.length === 0) return;
+
+    const selectedFile = files[0];
+    setFormData({ ...formData, [name]: selectedFile });
   };
+
 
   // this function use to change date of birth in the form
   const handleDateChange = (date) => {
@@ -54,16 +78,54 @@ const ManagerRegistration = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    setFormData(initialFormState);
+  
+   const formDataToSend = new FormData();
+   
+  
+    formData.cloudKitchenId = uuidv4(); // Generate UUID if no cloudKitchenId is selected
+  
+  // Add the cloudKitchenId to formDataToSend
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) {
+        formDataToSend.append(key, value);
+      }
+    });
+    console.log("Submitting data:", formData);
 
-    if (profilePicRef.current) profilePicRef.current.value = "";
-    if (aadharCardRef.current) aadharCardRef.current.value = "";
-    if (panCardRef.current) panCardRef.current.value = "";
-    if (passbookPhotoRef.current) passbookPhotoRef.current.value = "";
+
+    try {
+      // Step 1: Register the manager
+      const response = await axios.post("http://localhost:9090/api/managers/register",
+        formDataToSend,
+        { headers: { "Content-Type": "application/json" } });
+
+      console.log("Response:", response.data);
+      alert("Response: Cloud Kitchen registered successfully!");
+      
+      setTimeout(() => navigate("/admin-details"), 2000);
+      setFormData(initialFormState);
+
+      // if (newManager?.id) {
+      //   const managerId = newManager.id;
+      //   // Step 2: Upload files one by one
+      //   if (formData.profilePicture) {
+      //     await uploadProfilePicture(managerId, formData.profilePicture);
+      //   }
+      //   if (formData.aadharCard) {
+      //     await uploadAadharCard(managerId, formData.aadharCard);
+      //   }
+      //   if (formData.panCard) {
+      //     await uploadPanCard(managerId, formData.panCard);
+      //   }
+      // }
+    } catch (error) {
+      console.error("Error:", error.response?.data || error.message);
+      alert("Error registering Cloud Kitchen!");
+    }
   };
+
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-gradient-to-r from-orange-200 via-orange-100 to-orange-200 bg-transparent shadow-lg rounded-lg border-l-4 border-orange-500 mt-16">
@@ -131,14 +193,19 @@ const ManagerRegistration = () => {
               <span className="text-red-500">*</span>
               Mobile :
             </label>
-            <input
-              type="tel"
-              name="mobileNumber"
+            <PhoneInput
+              country="in"
+              name="phone"
               placeholder="Enter Mobile Number"
-              className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              maxLength={10} required />
+              containerClass="flex "
+              inputClass="w-full md:w-1/3 border rounded-md focus:ring-2 focus:ring-orange-400 outline-none p-2"
+              buttonClass="!border-r-0"
+              dropdownClass="!bg-white !shadow-md"
+              value={formData.phone}
+              onChange={(value) => setFormData({ ...formData, phone: value })}
+              required
+            />
+
           </div>
         </div>
 
@@ -168,7 +235,7 @@ const ManagerRegistration = () => {
               Gender :
             </label>
             <div className="flex gap-6">
-              {["Male", "Female", "Other"].map((gender) => (
+              {["MALE", "FEMALE", "OTHER"].map((gender) => (
                 <label
                   key={gender}
                   className="flex items-center gap-1 cursor-pointer">
@@ -186,20 +253,50 @@ const ManagerRegistration = () => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="grid grid-cols-2">
+
+          <div className="">
+            <label
+              className="block font-semibold text-gray-700 mr-2">
+              <span className="text-red-500">*</span>
+              Role :
+            </label>
+            <select
+              name="role"
+              className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
+              value={formData.role}
+              onChange={handleChange} required>
+              <option value="">Select Role</option>
+              <option value="SUPERVISOR">Supervisor</option>
+              <option value="MANAGER">Manager</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+          </div>
+          <div>
           <label
-            className="block font-semibold text-gray-700 mr-2">
-            <span className="text-red-500">*</span>
-            Role :
-          </label>
-          <select
-            name="role"
-            className="w-2/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-            value={formData.role}
-            onChange={handleChange} required>
-            <option value="">Select Role</option>
-            <option value="Manager">Manager</option>
-          </select>
+              className="block font-semibold text-gray-700 mr-2">
+              <span className="text-red-500">*</span>
+              Cloud Kitchen ID :
+            </label>
+            <select
+              name="cloudKitchenId"
+              className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
+              value={formData.cloudKitchenId || ""}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Cloud Kitchen</option>
+              {kitchens.length > 0 ? (
+                kitchens.map((kitchen) => (
+                  <option key={kitchen.kitchenId} value={kitchen.uuid}> {/* Make sure kitchen.id is correct */}
+                    {kitchen.city} - {kitchen.kitchenId} 
+                  </option>
+                ))
+              ) : (
+                <option disabled>Loading...</option>
+              )}
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-2">
@@ -244,11 +341,11 @@ const ManagerRegistration = () => {
             <input
               type="text"
               placeholder="Enter Account Number "
-              name="accountNumber"
+              name="bankAccountNumber"
               className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-              value={formData.accountNumber}
+              value={formData.bankAccountNumber}
               onChange={handleChange}
-              maxLength={30} required />
+              maxLength={20} required />
           </div>
           <div className="">
             <label className="block font-semibold text-gray-700">
@@ -258,9 +355,9 @@ const ManagerRegistration = () => {
             <input
               type="text"
               placeholder="Enter IFSC Number"
-              name="ifscNumber"
+              name="ifscCode"
               className="w-4/5 p-2 border rounded-md focus:ring-2 focus:ring-orange-400"
-              value={formData.ifscNumber}
+              value={formData.ifscCode}
               onChange={handleChange}
               maxLength={11} required />
           </div>
@@ -291,7 +388,7 @@ const ManagerRegistration = () => {
               className="w-4/5 px-3 py-2 border border-gray-400 rounded-md file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-orange-500 file:text-white file:rounded-md file:cursor-pointer"
               required />
           </div>
-          <div>
+          {/* <div>
 
 
             <label className="block font-semibold text-gray-700"><span className="text-red-500">*</span>Upload Pan Card</label>
@@ -302,8 +399,8 @@ const ManagerRegistration = () => {
               onChange={handleFileChange}
               className="w-4/5 px-3 py-2 border border-gray-400 rounded-md file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-orange-500 file:text-white file:rounded-md file:cursor-pointer"
               required />
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
 
 
             <label className="block font-semibold text-gray-700"><span className="text-red-500">*</span>Upload Passbook</label>
@@ -313,7 +410,7 @@ const ManagerRegistration = () => {
               ref={passbookPhotoRef}
               onChange={handleFileChange}
               className="w-4/5 px-3 py-2 border border-gray-400 rounded-md file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-orange-500 file:text-white file:rounded-md file:cursor-pointer" />
-          </div>
+          </div> */}
         </div>
         <button
           type="submit"
@@ -325,4 +422,4 @@ const ManagerRegistration = () => {
   );
 };
 
-export default ManagerRegistration;
+export default ManagerRegistration
