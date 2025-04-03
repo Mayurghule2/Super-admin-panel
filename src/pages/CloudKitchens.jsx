@@ -12,7 +12,9 @@ const CloudKitchens = () => {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
+  const [selectedRevenue, setSelectedRevenue] = useState("");
 const [kitchens, setKitchens] = useState([]);
+
   // Fetch Cloud Kitchens from API
  useEffect(() => {
   axios
@@ -24,6 +26,35 @@ const [kitchens, setKitchens] = useState([]);
     .catch((error) => console.error("Error fetching kitchens:", error));
 }, []);
 
+// Handle state selection (reset city and rating)
+const handleStateChange = (e) => {
+  setSelectedState(e.target.value);
+  setSelectedCity(""); // Reset city when state is changed
+  setSelectedRating(""); // Reset rating when state is changed
+  setSelectedRevenue("");
+};
+// Handle city selection (reset rating)
+const handleCityChange = (e) => {
+  setSelectedCity(e.target.value);
+  setSelectedRating(""); // Reset rating when city is changed
+  setSelectedRevenue("");
+};
+const handleRatingChange = (e) => {
+  setSelectedRating(e.target.value);
+  setSelectedRevenue("");
+};
+const handleRevenueChange = (e) => {
+    setSelectedRevenue(e.target.value);
+  };
+ // Sorting logic
+ const sortedKitchens = [...kitchens].sort((a, b) => {
+  if (selectedRevenue === "asc") {
+    return a.revenue - b.revenue;
+  } else if (selectedRevenue === "desc") {
+    return b.revenue - a.revenue;
+  }
+  return 0;
+});
   // Filtering logic
   const filteredKitchens = kitchens.filter((kitchen) => {
     const stateMatch = selectedState === "" || kitchen.state === selectedState;
@@ -40,6 +71,7 @@ const [kitchens, setKitchens] = useState([]);
     setSelectedState("");
     setSelectedCity("");
     setSelectedRating("");
+    setSelectedRevenue("");
   };
 
   return (
@@ -50,13 +82,14 @@ const [kitchens, setKitchens] = useState([]);
 
       <div className="my-4 flex flex-col gap-4 w-full">
       {/* Filters */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
         {/* State Filter */}
         <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus-within:border-orange-500 focus-within:shadow-md">
           <select
             className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
+            onChange={handleStateChange}
+            // onChange={(e) => setSelectedState(e.target.value)}
           >
             <option value="">State</option>
             <option value="Maharashtra">Maharashtra</option>
@@ -70,7 +103,8 @@ const [kitchens, setKitchens] = useState([]);
           <select
             className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
+            // onChange={(e) => setSelectedCity(e.target.value)}
+            onChange={handleCityChange}
           >
             <option value="">City</option>
             <option value="Amravati">Amravati</option>
@@ -87,7 +121,8 @@ const [kitchens, setKitchens] = useState([]);
           <select
             className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
             value={selectedRating}
-            onChange={(e) => setSelectedRating(e.target.value)}
+            // onChange={(e) => setSelectedRating(e.target.value)}
+            onChange={handleRatingChange} 
           >
             <option value="">Rating</option>
             <option value="4.6">4.6 & Above</option>
@@ -97,8 +132,20 @@ const [kitchens, setKitchens] = useState([]);
           </select>
           <FaChevronDown className="absolute right-3 text-gray-500 text-lg pointer-events-none" />
         </div>
+      <div className="relative flex items-center bg-white border border-gray-300 rounded-lg shadow-sm px-4 py-2 focus-within:border-orange-500 focus-within:shadow-md">
+            <select
+              className="w-full appearance-none bg-transparent border-none outline-none text-gray-800 pr-6 pl-2"
+              value={selectedRevenue}
+              // onChange={(e) => setSelectedRevenue(e.target.value)}
+              onChange={handleRevenueChange}
+            >
+              <option value="">Revenue</option>
+              <option value="asc">Low to High</option>
+              <option value="desc">High to Low</option>
+            </select>
+            <FaChevronDown className="absolute right-3 text-gray-500 text-lg pointer-events-none" />
+          </div>
       </div>
-
       {/* Search and Clear Filters */}
       <div className="flex flex-wrap justify-between gap-3">
         {/* Search Bar */}
