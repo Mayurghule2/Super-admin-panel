@@ -81,7 +81,7 @@ const CloudRegistration = () => {
       );
 
       console.log("Response:", response.data);
-      alert("Response:", "Cloud Kitchen registered successfully!");
+      alert("Response: Cloud Kitchen registered successfully!");
       setSuccessMessage("Cloud Kitchen registered successfully!");
       setTimeout(() => navigate("/cloud-kitchens"), 2000);
       setFormData(initialFormState);
@@ -390,6 +390,7 @@ const CloudRegistration = () => {
                 required
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               >
+                <option value="">Select Kitchen Type</option>
                 <option value="VEG">Veg</option>
                 <option value="NON_VEG">Non-Veg</option>
                 <option value="MIXED">Mixed</option>
