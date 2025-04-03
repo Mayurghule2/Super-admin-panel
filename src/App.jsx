@@ -41,6 +41,7 @@ function Layout() {
                         <Route path="/cloud-kitchens" element={<CloudKitchens />} />
                         <Route path="/cloud-kitchens/:id" element={<KitchenDetails />} />
                         <Route path="/menus" element={<Menus />} />
+                        <Route path="/state/:stateName" element={<StateCuisines />} />
                         <Route path="/notifications" element={<Notifications />} />
                         <Route path="/messages" element={<Messages />} />
                         <Route path="/sign-in" element={<SignIn />} />
