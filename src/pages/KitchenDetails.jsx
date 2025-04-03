@@ -44,14 +44,17 @@ const KitchenDetails = () => {
         <div className="">
 
           <h1 className="text-3xl font-bold mb-5 mt-5">{kitchens.kitchenName}</h1>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Manager ID: {kitchens.managerId}</p>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Cloud kitchens ID: {kitchens.cloudKitchenId} </p>
+          {/* <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Manager ID: {kitchens.managerId}</p> */}
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">Cloud kitchens ID: {kitchens.kitchenId} </p>
           <p className="text-gray-600 text-lg mb-1 flex items-center gap-2">
             <IoLocation />
-            Address: {kitchens.address}, {kitchens.city}, {kitchens.state}</p>
+            Address: {kitchens.location}, {kitchens.city}, {kitchens.state}</p>
           <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"> <FcManager /> Administrated by {kitchens.managerName}</p>
-          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"><FaRegThumbsUp /> Rating: ⭐ {kitchens.rating}</p>
-          <p className="text-gray-600 text-lg flex items-center gap-2"> <FaCalendarAlt /> Operating Time: {kitchens.operatingTime}</p>
+          <p className="text-gray-600 text-lg mb-1 flex items-center gap-2"><FaRegThumbsUp /> Rating: ⭐ {kitchens?.rating ?? 0}</p>
+          <p className="text-gray-600 text-lg flex items-center gap-2"> <FaCalendarAlt /> Operating Time:{" "}
+  {typeof kitchens.operatingTime === "string"
+    ? kitchens.operatingTime
+    : `${kitchens.operatingTime?.open || "N/A"} - ${kitchens.operatingTime?.close || "N/A"}`} </p>
         </div>
       </div>
 
