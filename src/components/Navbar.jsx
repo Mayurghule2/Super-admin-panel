@@ -30,7 +30,7 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem("authToken"); // Clear auth token (if any)
         setDropdownOpen(false); // Close the dropdown
-        navigate("/sign-in"); // Redirect to sign-in page
+        navigate("/"); // Redirect to sign-in page
     };
 
     return (
