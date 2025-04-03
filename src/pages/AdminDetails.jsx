@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { FaDownload, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,28 @@ const AdminDetails = () => {
   const [filterState, setFilterState] = useState("");
   const [filterCity, setFilterCity] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
+  const [managers, setManagers] = useState([]);
 
-  const managers = [
-    { id: 1, name: "MS Dhoni", kitchen: "Biryani House", city: "Amravati", state: "Maharashtra", status: "Active" },
-    { id: 2, name: "Rohit Sharma", kitchen: "Taste of South", city: "Mysuru", state: "Karnataka", status: "Inactive" },
-    { id: 3, name: "Virat Kohli", kitchen: "Khamaas Veg", city: "Delhi", state: "Delhi", status: "Active" },
-    { id: 4, name: "Suresh Raina", kitchen: "Tandoori House", city: "Lucknow", state: "Uttar Pradesh", status: "Active" },
-    { id: 5, name: "Jasprit Bumrah", kitchen: "Punjabi Tadka", city: "Amritsar", state: "Punjab", status: "Active" },
-  ];
+  const [kitchens, setKitchens] = useState([]);
+  // const managers = [
+  //   { id: 1, name: "MS Dhoni", kitchen: "Biryani House", city: "Amravati", state: "Maharashtra", status: "Active" },
+  //   { id: 2, name: "Rohit Sharma", kitchen: "Taste of South", city: "Mysuru", state: "Karnataka", status: "Inactive" },
+  //   { id: 3, name: "Virat Kohli", kitchen: "Khamaas Veg", city: "Delhi", state: "Delhi", status: "Active" },
+  //   { id: 4, name: "Suresh Raina", kitchen: "Tandoori House", city: "Lucknow", state: "Uttar Pradesh", status: "Active" },
+  //   { id: 5, name: "Jasprit Bumrah", kitchen: "Punjabi Tadka", city: "Amritsar", state: "Punjab", status: "Active" },
+  // ];
+  useEffect(() => {
+    fetch("http://localhost:9090/api/managers/all") // Change URL as per your backend server
+      .then((response) => response.json())
+      .then((data) => setManagers(data))
+      .catch((error) => console.error("Error fetching managers:", error));
+
+       // Fetch cloud kitchens
+  fetch("http://localhost:9090/api/cloud-kitchens/all")
+    .then((response) => response.json())
+    .then((data) => setKitchens(data))
+    .catch((error) => console.error("Error fetching cloud kitchens:", error));
+  }, []);
 
   // *Updated Filtering Logic*
   const filteredManagers = managers.filter((manager) => {
@@ -158,34 +172,48 @@ const AdminDetails = () => {
               <th className="border p-3">Name</th>
               <th className="border p-3">Cloud Kitchen</th>
               <th className="border p-3">City</th>
-              <th className="border p-3">State</th>
+              <th className="border p-3">Country</th>
               <th className="border p-3">Status</th>
               <th className="border p-3">Edit</th>
             </tr>
           </thead>
           <tbody>
-            {filteredManagers.map((manager) => (
-              <tr key={manager.id} className="text-center hover:bg-gray-100 transition-all">
-                <td className="border p-3">{manager.id}</td>
-                <td className="border p-3 font-medium">
-                  <Link to={`/manager-details/${manager.name}`} className="text-blue-600 hover:underline">
-                    {manager.name}
-                  </Link>
-                </td>
-                <td className="border p-3">{manager.kitchen}</td>
-                <td className="border p-3">{manager.city}</td>
-                <td className="border p-3">{manager.state}</td>
-                <td className={`border p-3 font-semibold ${manager.status === "Active" ? "text-green-600" : "text-red-600"}`}>
-                  {manager.status}
-                </td>
-                <td className="border p-3">
-                  <button className="text-blue-600 hover:text-blue-800" onClick={handleEditClick}>
-                    <FaEdit />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {filteredManagers.length === 0 ? (
+    <tr>
+      <td colSpan="7" className="text-center py-4 text-gray-500">
+        No managers found
+      </td>
+    </tr>
+  ) : (
+    filteredManagers.map((manager) => {
+      const kitchen = kitchens.find(k => String(k.id) === String(manager.kitchenId));
+
+      return (
+        <tr key={manager.id} className="text-center hover:bg-gray-100 transition-all">
+          <td className="border p-3">{manager.id}</td>
+          <td className="border p-3 font-medium">
+            <Link to={`/manager-details/${manager.name}`} className="text-blue-600 hover:underline">
+              {manager.name}
+            </Link>
+          </td>
+          <td className="border p-3">{kitchen ? kitchen.kitchenName : "N/A"}</td>
+          <td className="border p-3">{kitchen.city}</td>
+          <td className="border p-3">{kitchen.state}</td>
+          <td className={`border p-3 font-semibold ${manager.status === "Active" ? "text-green-600" : "text-red-600"}`}>
+            {manager.status}
+          </td>
+          <td className="border p-3">
+            <button className="text-blue-600 hover:text-blue-800" onClick={() => handleEditClick(manager.id)}>
+              <FaEdit />
+            </button>
+          </td>
+        </tr>
+      );
+    })
+  )}
+</tbody>
+
+
 
         </table>
       </div>
