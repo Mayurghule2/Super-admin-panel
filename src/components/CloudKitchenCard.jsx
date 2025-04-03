@@ -21,8 +21,8 @@ const CloudKitchenCard = ({ kitchen }) => {
 
         {/* Push rating to the right */}
         <div className="font-bold flex bg-orange-500 text-white rounded-md items-center gap-2 px-3 py-2 ml-auto">
-          <BsFillStarFill />
-          {kitchen.rating}
+          <BsFillStarFill />  
+          {kitchen?.rating ?? 0} 
         </div>
       </div>
 
