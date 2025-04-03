@@ -18,7 +18,27 @@ const UpdateManagerDetails = () => {
     phone: manager.phone || "",
     status: manager.status || "Active",
   });
-
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch(`/api/managers/update/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        alert("Manager updated successfully!");
+        navigate(-1); // Go back to previous page
+      } else {
+        alert("Failed to update manager");
+      }
+    } catch (error) {
+      console.error("Error updating manager:", error);
+    }
+  };
+  
   // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -138,7 +158,7 @@ const UpdateManagerDetails = () => {
           {/* Update Button */}
           <div className="text-center">
 
-            <button className="w-1/4 bg-orange-500 text-white font-semibold py-2 mt-4 rounded-lg hover:bg-orange-600">
+            <button className="w-1/4 bg-orange-500 text-white font-semibold py-2 mt-4 rounded-lg hover:bg-orange-600" onClick={handleUpdate}>
               Update
             </button>
           </div>
